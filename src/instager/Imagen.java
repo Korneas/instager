@@ -3,7 +3,7 @@ package instager;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Imagen {
+public class Imagen implements Comparable<Imagen>{
 
 	private int x, y, escalaX, escalaY, escalaOx, escalaOy, angulo;
 	private String nombre,tipo;
@@ -40,7 +40,45 @@ public class Imagen {
 		this.x = x;
 		this.y = y;
 	}
-
 	
+	public void escalar(int escalaX, int escalaY) {
+		this.escalaX = escalaX;
+		this.escalaY = escalaY;
+	}
+
+	public void devolver() {
+		escalaX = escalaOx;
+		escalaY = escalaOy;
+	}
+
+	public int getEscalaX() {
+		return escalaX;
+	}
+
+	public int getEscalaY() {
+		return escalaY;
+	}
+
+	public int getAngulo() {
+		return angulo;
+	}
+
+	public void setAngulo(int angulo) {
+		this.angulo = angulo;
+	}
+
+	public PImage getImg() {
+		return img;
+	}
+
+	public void setImg(PImage img) {
+		this.img = img;
+	}
+
+	@Override
+	public int compareTo(Imagen o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
