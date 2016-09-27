@@ -19,9 +19,7 @@ public class Logica {
 	private boolean full;
 	private ArrayList<Imagen> fotos;
 	private ListIterator<Imagen> iter;
-	private String nombre, tipo;
 	private int pos;
-	private PImage prueba;
 
 	public Logica(PApplet app) {
 		this.app = app;
@@ -29,13 +27,10 @@ public class Logica {
 		fondo = app.loadImage("Fondo.png");
 		interfaz = app.loadImage("InterfazInstager.png");
 		tools = app.loadImage("tools.png");
-		nombre = "Entrenador1";
-		tipo = "png";
-		prueba = app.loadImage("data/imagenes/Entrenador1.png");
+		crearImagenes();
 		iter = fotos.listIterator();
 		img = iter.next();
 		pos = iter.nextIndex();
-		img = new Imagen(app, nombre, tipo, prueba);
 		img.lugar(500, 258);
 	}
 
@@ -43,7 +38,8 @@ public class Logica {
 		app.imageMode(PApplet.CENTER);
 		if (full == false)
 			app.image(fondo, app.width / 2, app.height / 2);
-		fotos.get(pos).rotar();
+		
+		img.rotar();
 
 		if (full == false) {
 			app.image(interfaz, app.width / 2, app.height / 2);
@@ -70,13 +66,39 @@ public class Logica {
 			}
 		}
 	}
-
 	
-
 	public boolean zonaMouse(int x1, int x2, int y1, int y2) {
 		if (app.mouseX > x1 && app.mouseX < x2 && app.mouseY > y1 && app.mouseY < y2) {
 			return true;
 		}
 		return false;
+	}
+	
+	public void crearImagenes() {
+
+		String directorioImagenes = "./data/imagenes/";
+		File dirImg = new File(directorioImagenes);
+		
+		if (dirImg.exists()) {
+			File[] archivosTemp = dirImg.listFiles();
+			for (int i = 0; i < archivosTemp.length; i++) {
+				agregarImagen(archivosTemp[i]);
+			}
+		} else {
+			System.err.println("No Directory or Files Found on: " + directorioImagenes);
+		}
+
+	}
+
+	public void agregarImagen(File files) {
+
+		String nombre = files.getName();
+		String[] arregloTipo = nombre.split(Pattern.quote("."));
+		String tipo = arregloTipo[1];
+		PImage img = app.loadImage("./data/imagenes/" + nombre);
+
+		Imagen insta = new Imagen(app, nombre, tipo, img);
+
+		fotos.add(insta);
 	}
 }

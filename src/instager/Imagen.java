@@ -74,6 +74,11 @@ public class Imagen implements Comparable<Imagen>{
 	public void setImg(PImage img) {
 		this.img = img;
 	}
+	
+	public void pintarBarra(int xB,int yB){
+		app.imageMode(PApplet.CENTER);
+		app.image(img, xB, yB, (int)(img.width*0.25), (int)(img.height*0.25));
+	}
 
 	@Override
 	public int compareTo(Imagen o) {
