@@ -49,6 +49,44 @@ public class Logica {
 	}
 
 	public void click() {
+		if (zonaSensible(0)) {
+			full = false;
+			img.lugar(500, 258);
+			img.devolver();
+		}
+		if (zonaSensible(1)) {
+			full = true;
+			int escalaX = img.getEscalaX();
+			int escalaY = img.getEscalaY();
+			if (escalaX <= app.width && escalaY < app.height) {
+				escalaX += escalaX * 0.65;
+				escalaY += escalaY * 0.65;
+				img.escalar(escalaX, escalaY);
+				img.lugar(500, 350);
+			}
+		}
+		if (zonaSensible(2)) {
+			if (img.getEscalaX() < 950) {
+				int escalaX = img.getEscalaX();
+				int escalaY = img.getEscalaY();
+				img.escalar(escalaX + (int) (escalaX * 0.1), escalaY + (int) (escalaY * 0.1));
+			}
+		}
+		if (zonaSensible(3)) {
+
+			if (img.getEscalaX() > 200) {
+				int escalaX = img.getEscalaX();
+				int escalaY = img.getEscalaY();
+				img.escalar(escalaX - (int) (escalaX * 0.1), escalaY - (int) (escalaY * 0.1));
+			}
+		}
+		if (zonaSensible(4)) {
+			img.setAngulo(img.getAngulo() + 90);
+		}
+		if (zonaSensible(5)) {
+			img.setAngulo(img.getAngulo() - 90);
+		}
+		
 		// Zona de cambio de imagenes
 		if (zonaMouse(68, 148, 228, 300)) {
 			if (iter.previousIndex() - 1 > -1) {
@@ -65,6 +103,13 @@ public class Logica {
 				iter.next();
 			}
 		}
+	}
+	
+	public boolean zonaSensible(int i) {
+		if (app.mouseX > (i * 92) + 225 && app.mouseX < ((i + 1) * 92) + (225) && app.mouseY > 0 && app.mouseY < 52) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean zonaMouse(int x1, int x2, int y1, int y2) {
