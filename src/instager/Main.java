@@ -3,25 +3,31 @@ import processing.core.*;
 
 public class Main extends PApplet {
 	
+	private Logica app;
+	
 	static public void main(String[] args) {
 		PApplet.main("instager.Main");
 	}
 
 	@Override
 	public void settings() {
-		size(500, 500);
+		size(1000, 700);
 	}
 
 	@Override
 	public void setup() {
-		colorMode(HSB, 360, 100, 100);
+		app = new Logica(this);
 
 	}
-	//pruebita
 
 	@Override
 	public void draw() {
 		background(0);
-
+		app.ejecutar();
+	}
+	
+	@Override
+	public void mouseClicked(){
+		app.click();
 	}
 }
