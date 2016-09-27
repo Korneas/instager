@@ -44,6 +44,26 @@ public class Logica {
 		if (full == false) {
 			app.image(interfaz, app.width / 2, app.height / 2);
 		}
+		
+		if (pos - 3 > 0) {
+			fotos.get(pos-3).pintarBarra(84, 615);
+		}
+
+		if (pos - 2 > 0 || iter.previousIndex()>0) {
+			fotos.get(pos-2).pintarBarra(275, 615);
+		}
+		
+		if (iter.previousIndex()<=fotos.size()) {
+			fotos.get(pos-1).pintarBarra(500, 615);
+		}
+
+		if (iter.hasNext()) {
+			fotos.get(pos).pintarBarra(725, 615);
+		}
+
+		if (iter.nextIndex() + 1 < fotos.size()) {
+			fotos.get(pos + 1).pintarBarra(916, 615);
+		}
 
 		app.image(tools, app.width / 2, app.height / 2);
 	}
