@@ -1,5 +1,6 @@
 package instager;
 
+import java.util.Comparator;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -13,8 +14,9 @@ public class Imagen implements Comparable<Imagen>{
 	public Imagen(PApplet app, String nombre, String tipo, PImage img) {
 		this.app = app;
 		this.img = img;
-		x = 500;
-		y = 350;
+		this.nombre=nombre;
+		this.tipo=tipo;
+		lugar(500,258);
 		angulo = 0;
 		escalaX = img.width;
 		escalaY = img.height;
@@ -78,6 +80,8 @@ public class Imagen implements Comparable<Imagen>{
 	public void pintarBarra(int xB,int yB){
 		app.imageMode(PApplet.CENTER);
 		app.image(img, xB, yB, (int)(img.width*0.25), (int)(img.height*0.25));
+		app.fill(255);
+		app.text(nombre, xB-50, yB+80);
 	}
 
 	public String getNombre() {
@@ -94,6 +98,10 @@ public class Imagen implements Comparable<Imagen>{
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	public int getWidth(){
+		return img.width;
 	}
 
 	@Override
