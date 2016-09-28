@@ -1,11 +1,11 @@
 package instager;
 
-import java.util.Comparator;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Imagen implements Comparable<Imagen>{
+public class Imagen {
 
+	//Creacion de posiciones, escalas y angulo para rotar - Caracteristicas como nombre, formato e imagen
 	private int x, y, escalaX, escalaY, escalaOx, escalaOy, angulo;
 	private String nombre,tipo;
 	private PApplet app;
@@ -24,12 +24,14 @@ public class Imagen implements Comparable<Imagen>{
 		escalaOy = img.height;
 	}
 
+	//Pintar Imagen principal
 	public void pintar() {
 		
 		app.imageMode(PApplet.CENTER);
 		app.image(img, 0, 0, escalaX, escalaY);
 	}
 
+	//Ejecutacion de la imagen principal con posibilidad de rotacion
 	public void rotar() {
 		app.pushMatrix();
 		app.translate(x, y);
@@ -38,16 +40,19 @@ public class Imagen implements Comparable<Imagen>{
 		app.popMatrix();
 	}
 
+	//Ubicar la imagen
 	public void lugar(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 	
+	//Escalar la imagen principal
 	public void escalar(int escalaX, int escalaY) {
 		this.escalaX = escalaX;
 		this.escalaY = escalaY;
 	}
 
+	//Se devuelve a la escala original
 	public void devolver() {
 		escalaX = escalaOx;
 		escalaY = escalaOy;
@@ -77,6 +82,7 @@ public class Imagen implements Comparable<Imagen>{
 		this.img = img;
 	}
 	
+	//Se dibujan imagenes en miniatura
 	public void pintarBarra(int xB,int yB){
 		app.imageMode(PApplet.CENTER);
 		app.image(img, xB, yB, (int)(img.width*0.25), (int)(img.height*0.25));
@@ -102,12 +108,6 @@ public class Imagen implements Comparable<Imagen>{
 	
 	public int getWidth(){
 		return img.width;
-	}
-
-	@Override
-	public int compareTo(Imagen o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
