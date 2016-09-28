@@ -123,6 +123,40 @@ public class Logica {
 			img.setAngulo(img.getAngulo() - 90);
 		}
 
+		if (zonaMouse(24, 90, 507, 545)) {
+			if (asc == true) {
+				Collections.sort(fotos, new ComparadorNombreAsc());
+			} else if (des == true) {
+				Collections.sort(fotos, new ComparadorNombreDes());
+			}
+		}
+
+		if (zonaMouse(114, 180, 507, 545)) {
+			if (asc == true) {
+				Collections.sort(fotos, new ComparadorTipoAsc());
+			} else if (des == true) {
+				Collections.sort(fotos, new ComparadorTipoDes());
+			}
+		}
+
+		if (zonaMouse(205, 271, 507, 545)) {
+			if (asc == true) {
+				Collections.sort(fotos, new ComparadorSizeAsc());
+			} else if (des == true) {
+				Collections.sort(fotos, new ComparadorSizeDes());
+			}
+		}
+
+		if (zonaMouse(820, 886, 507, 545)) {
+			asc = true;
+			des = false;
+		}
+
+		if (zonaMouse(911, 977, 507, 545)) {
+			des = true;
+			asc = false;
+		}
+
 		// Zona de cambio de imagenes
 		if (zonaMouse(68, 148, 228, 300)) {
 			if (pos - 1 > -1) {
